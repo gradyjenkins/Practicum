@@ -11,8 +11,9 @@ import Firebase
 
 class CreateAccountViewController: UIViewController {
     
-    @IBOutlet weak var emailLabel: UITextField!
+    @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var phoneNumberLabel: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,39 @@ class CreateAccountViewController: UIViewController {
     }
     
 
-    @IBAction func CreateAccount(sender: AnyObject) {
+    @IBAction func CreateAccount(sender: AnyObject)
+    {
         
+        if self.emailField.text == "" || self.passwordField.text == ""
+        {
+            let alertController = UIAlertController(title: "Error!", message: "Enter a valid email and password", preferredStyle: .Alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            FIRAuth.auth()?.createUserWithEmail(self.emailField.text!, password: self.passwordField.text!, completion: {(user, error) in
+                if error == nil
+                {
+                    self.emailField.text = user!.email
+                    self.emailField.text = ""
+                    self.passwordField.text = ""
+                    self.dismissViewControllerAnimated(true, completion: {});
+                }
+                else
+                {
+                    let alertController = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: .Alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    
+                }
+            })
+        }
+
     }
     /*
     // MARK: - Navigation
