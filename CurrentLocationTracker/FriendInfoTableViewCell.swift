@@ -14,6 +14,10 @@ class FriendInfoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    @IBOutlet weak var friendInfoLabel: UILabel!
+    
+    @IBOutlet weak var friendInfoTextField: UITextField!
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

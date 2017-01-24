@@ -1,0 +1,6 @@
+framework module Pods_CurrentLocationTracker {
+  umbrella header "Pods-CurrentLocationTracker-umbrella.h"
+
+  export *
+  module * { export * }
+}

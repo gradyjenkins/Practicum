@@ -14,6 +14,9 @@ class FriendsListTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    @IBOutlet weak var eachFriendName: UILabel!
+    
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

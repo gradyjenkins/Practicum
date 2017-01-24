@@ -7,13 +7,22 @@
 //
 
 import UIKit
+import MapKit
 
-class MapTrackerViewController: UIViewController {
+class MapTrackerViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
 
+    @IBOutlet weak var currentlyTrackingMap: MKMapView!
+    
+    var locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
+        currentlyTrackingMap.mapType = .Standard
+        currentlyTrackingMap.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,14 +31,24 @@ class MapTrackerViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
+    @IBAction func showTrackingInfo(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("trackingInfoSegue", sender: self)
+    }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "trackingInfoSegue" {
+            let destination = segue.destinationViewController as! UINavigationController
+            destination.viewControllers[0] as! TrackingInfoTableViewController
+        }
     }
-    */
+
+    @IBAction func logoutButton(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }

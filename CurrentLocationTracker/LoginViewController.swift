@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
@@ -21,15 +22,33 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
 
     /*
+     * Login Button Action 
+     *   - When pressed validate username and password
+     *   - If valid segue to tab bar controller
+     *   - Else alert user and dont perform segue
+     */
+    @IBAction func loginButton(sender: AnyObject) {
+        //Add login validation code here
+        
+        //Add this to section after validation where login credentials are valid
+        self.performSegueWithIdentifier("loginSegue", sender: self)
+        
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "loginSegue" {
+            segue.destinationViewController as! UITabBarController
+        }
     }
-    */
 
 }

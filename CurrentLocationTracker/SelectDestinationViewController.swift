@@ -8,17 +8,99 @@
 
 import UIKit
 
-class SelectDestinationViewController: UIViewController {
-
+class SelectDestinationViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    
+    @IBOutlet weak var startingPointField: UITextField!
+    @IBOutlet weak var endingPointField: UITextField!
+    
+    @IBOutlet weak var destinationPicker: UIPickerView!
+    
+    var start = ["Wilson Hall", "Howard Hall", "Bey Hall", "Dorms", "Library"]
+    var end = ["Wilson Hall", "Howard Hall", "Bey Hall", "Dorms", "Dining Hall"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        destinationPicker.hidden = true
+        
+        destinationPicker.delegate = self
+        destinationPicker.dataSource = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: (#selector(SelectDestinationViewController.updatePicker)), name: UITextFieldTextDidBeginEditingNotification, object: nil)
+    }
+    
+    func updatePicker() {
+        destinationPicker.hidden = false
+        self.destinationPicker.reloadAllComponents()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //returns the number of columns to display
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        //When user selects starting point
+        if startingPointField.isFirstResponder() {
+            return start[row]
+        }
+            //When user selects end destination text field
+        else if endingPointField.isFirstResponder() {
+            return end[row]
+        }
+        
+        //If neither is first responder, picker data is nil
+        return nil
+    }
+    
+    //returns the number of rows
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        //When user selects starting point
+        if startingPointField.isFirstResponder() {
+            return start.count
+        }
+        //When user selects end destination text field
+        else if endingPointField.isFirstResponder() {
+            return end.count
+        }
+
+        //If neither is first responder, count is nil
+        return 0
+    }
+    
+    //selected picker row
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        //When user selects starting point
+        if startingPointField.isFirstResponder() {
+            let selectedDestination = start[row]
+            startingPointField.text = selectedDestination
+        }
+            //When user selects end destination text field
+        else if endingPointField.isFirstResponder() {
+            let selectedDestination = end[row]
+            endingPointField.text = selectedDestination
+        }
+    }
+    
+    @IBAction func execTrackRequest(sender: UIBarButtonItem) {
+        //Add Code Here to handled execution of tracking request by user
+        
+        //Either setup unwind segue to return to initial setup view or pop back to that view
+    }
+    
+    //Handles the cancel button functionality
+    @IBAction func cancelTracking(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 

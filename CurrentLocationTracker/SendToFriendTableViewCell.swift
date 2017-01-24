@@ -14,11 +14,16 @@ class SendToFriendTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
+    //Handles the value for each friend name label
+    @IBOutlet weak var friendNameLabel: UILabel!
+    //Handles the values for each friend switch
+    @IBOutlet weak var sendSwitch: UISwitch!
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

@@ -14,7 +14,9 @@ class IndividualTrackingInfoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
+    @IBOutlet weak var temporaryLabel: UILabel!
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

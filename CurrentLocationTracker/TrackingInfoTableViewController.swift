@@ -26,26 +26,32 @@ class TrackingInfoTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 90
+    }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
-    /*
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("trackEachFriend", forIndexPath: indexPath) as! IndividualTrackingInfoTableViewCell
 
         // Configure the cell...
+        cell.temporaryLabel.numberOfLines = 3
+        cell.temporaryLabel.text = "Display Info of Friends Currently Being Tracked. Remove this label and reference when actual view is being implemented."
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -91,5 +97,16 @@ class TrackingInfoTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func updateButton(sender: UIBarButtonItem) {
+        //Add code here to query database/server for most up to data location and other info
+        
+        //Page shoud displayed updated info
+    }
+    
+    @IBAction func backButton(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 
 }

@@ -9,7 +9,8 @@
 import UIKit
 
 class SendTrackerTableViewController: UITableViewController {
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,24 +30,31 @@ class SendTrackerTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
-    /*
+    //Function to set up each cell
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("sendToFriend", forIndexPath: indexPath) as! SendToFriendTableViewCell
 
         // Configure the cell...
+        
+        //set cell label to friends names
+        cell.friendNameLabel.text = "Friend 1"
+        //switch handler
+        cell.sendSwitch.setOn(false, animated: true)
+        
+        //add code to handle when switch is on to update database - will be needed on completion of sending tracker
 
         return cell
     }
-    */
-
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -82,14 +90,28 @@ class SendTrackerTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
+    
+    //Functionality for when Next button is pressed
+    @IBAction func nextButton(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("selectDestinationSegue", sender: self)
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "selectDestinationSegue" {
+            let destination = segue.destinationViewController as! UINavigationController
+            destination.viewControllers[0] as! SelectDestinationViewController
+        }
     }
-    */
+    
+    @IBAction func logoutButton(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 
 }

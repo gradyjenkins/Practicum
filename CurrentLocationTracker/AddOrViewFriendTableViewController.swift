@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddOrViewFriendTableViewController: UITableViewController {
+class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +29,25 @@ class AddOrViewFriendTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("friendInfo", forIndexPath: indexPath) as! FriendInfoTableViewCell
 
         // Configure the cell...
+        cell.friendInfoLabel.text = "First Name:"
+        cell.friendInfoTextField.text = "Bob"
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -82,14 +84,27 @@ class AddOrViewFriendTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
+    //Dismiss current view and display FriendsTableViewController
+    @IBAction func backToFriends(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+
+    //Save Button Functionality
+    @IBAction func saveChangesButton(sender: UIBarButtonItem) {
+        //Execute necessary code to update database
+        
+        
+        //Dismiss view - return to FriendsTableViewController
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }
