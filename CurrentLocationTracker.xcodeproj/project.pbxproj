@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2434B18C1E08E6BA0089F736 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2434B18B1E08E6BA0089F736 /* GoogleService-Info.plist */; };
 		2434B18F1E08F2FA0089F736 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2434B18E1E08F2FA0089F736 /* CreateAccountViewController.swift */; };
+		24BBB8061E41019800F49F01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24BBB8051E41019800F49F01 /* GoogleService-Info.plist */; };
 		352607F81D4C611E004807B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352607F71D4C611E004807B6 /* AppDelegate.swift */; };
 		352607FF1D4C611E004807B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352607FD1D4C611E004807B6 /* Main.storyboard */; };
 		352608011D4C611E004807B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 352608001D4C611E004807B6 /* Assets.xcassets */; };
@@ -29,8 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2434B18B1E08E6BA0089F736 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2434B18E1E08F2FA0089F736 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		24BBB8051E41019800F49F01 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		352607F41D4C611E004807B6 /* CurrentLocationTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrentLocationTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		352607F71D4C611E004807B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		352607FE1D4C611E004807B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 		352607EB1D4C611E004807B6 = {
 			isa = PBXGroup;
 			children = (
-				2434B18B1E08E6BA0089F736 /* GoogleService-Info.plist */,
+				24BBB8051E41019800F49F01 /* GoogleService-Info.plist */,
 				352607F61D4C611E004807B6 /* CurrentLocationTracker */,
 				352607F51D4C611E004807B6 /* Products */,
 				AFE8C96562C4EFA89049B09C /* Pods */,
@@ -222,7 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				352608041D4C611E004807B6 /* LaunchScreen.storyboard in Resources */,
-				2434B18C1E08E6BA0089F736 /* GoogleService-Info.plist in Resources */,
+				24BBB8061E41019800F49F01 /* GoogleService-Info.plist in Resources */,
 				352608011D4C611E004807B6 /* Assets.xcassets in Resources */,
 				352607FF1D4C611E004807B6 /* Main.storyboard in Resources */,
 			);

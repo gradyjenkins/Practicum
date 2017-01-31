@@ -12,8 +12,9 @@ import Firebase
 class CreateAccountViewController: UIViewController {
     
     @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var phoneNumberLabel: UITextField!
+    //@IBOutlet weak var phoneNumField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
