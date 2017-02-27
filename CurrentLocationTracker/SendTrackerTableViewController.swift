@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SendTrackerTableViewController: UITableViewController {
     
@@ -111,6 +112,11 @@ class SendTrackerTableViewController: UITableViewController {
     
     @IBAction func logoutButton(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
     }
     
 

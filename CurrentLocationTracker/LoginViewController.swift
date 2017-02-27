@@ -2,8 +2,6 @@
 //  LoginViewController.swift
 //  CurrentLocationTracker
 //
-//  Created by Ryan O'Rourke on 7/31/16.
-//  Copyright © 2016 Ryan O'Rourke. All rights reserved.
 //
 
 import UIKit
@@ -24,12 +22,6 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    
-//    @IBAction func createAccountButton(sender: UIButton)
-//    {
-//        self.performSegueWithIdentifier("createAccountSegue", sender: self)
-//    }
     
     
     @IBAction func goToCreateAccount(sender: UIButton) {
@@ -37,49 +29,43 @@ class LoginViewController: UIViewController {
 
     }
     
-    /*
-     * Login Button Action 
-     *   - When pressed validate username and password
-     *   - If valid segue to tab bar controller
-     *   - Else alert user and dont perform segue
-     */
     @IBAction func loginButton(sender: AnyObject)
     {
-        //Add login validation code here
-        if self.usernameTextField.text == "" || self.passwordTextField.text == ""
-        {
-            let alertController = UIAlertController(title: "Error!", message: "Enter a valid email and password", preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+        guard let email = usernameTextField.text, password = passwordTextField.text
+            else {
+                print("Form is not valid")
+                return
+        }
+        
+        FIRAuth.auth()?.signInWithEmail(email, password: password, completion: {
+            (user, error) in
             
-            alertController.addAction(defaultAction)
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
-        else
-        {
-            FIRAuth.auth()?.signInWithEmail(self.usernameTextField.text!, password: self.passwordTextField.text!, completion: {(user, error) in
-                
-                if error == nil
-                {
-                    self.usernameTextField.text = user!.email
-                    self.usernameTextField.text = ""
-                    self.passwordTextField.text = ""
-                }
-                else
-                {
-                    let alertController = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: .Alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
-                    
-                    alertController.addAction(defaultAction)
-                    self.presentViewController(alertController, animated: true, completion: nil)
-                    
-                }
-                
-            })
-        }
+            if error != nil {
+                print("TESTING: \(error)")
+                return
+            }
+        })
+        
         //Add this to section after validation where login credentials are valid
         self.performSegueWithIdentifier("loginSegue", sender: self)
     }
     
+//    func checkIfUserIsLoggedIn() {
+//        if FIRAuth.auth()?.currentUser?.uid == nil {
+//            performSelector(#selector(handleLogout), withObject: nil, afterDelay: 0)
+//        } else {
+//            FIRDatabase.database().reference().child("users")
+//        }
+//    }
+//    
+//    func handleLogout() {
+//        do {
+//            try FIRAuth.auth()?.signOut()
+//        } catch let logoutError {
+//            print(logoutError)
+//        }
+//    }
+//    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

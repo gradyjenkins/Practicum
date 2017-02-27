@@ -12,7 +12,7 @@ import Firebase
 class CreateAccountViewController: UIViewController {
     
     @IBOutlet weak var emailField: UITextField!
-    //@IBOutlet weak var phoneNumField: UITextField!
+    @IBOutlet weak var phoneNumField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
    
     
@@ -27,41 +27,63 @@ class CreateAccountViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    /**
+     * FIXME Error handling in creating account
+     * -Existing account, invalid email, etc.
+     *
+     */
     @IBAction func CreateAccount(sender: AnyObject)
     {
-        
-        if self.emailField.text == "" || self.passwordField.text == ""
-        {
-            let alertController = UIAlertController(title: "Error!", message: "Enter a valid email and password", preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+        guard let email = emailField.text, let phoneNumber = phoneNumField.text, let password = passwordField.text else{
+            print("Form is not valid")
+            return
+        }
+        FIRAuth.auth()?.createUserWithEmail(email, password: password, completion: {(user: FIRUser?, error) in
             
-            alertController.addAction(defaultAction)
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
-        else
-        {
-            FIRAuth.auth()?.createUserWithEmail(self.emailField.text!, password: self.passwordField.text!, completion: {(user, error) in
-                if error == nil
-                {
-                    self.emailField.text = user!.email
-                    self.emailField.text = ""
-                    self.passwordField.text = ""
-                    self.dismissViewControllerAnimated(true, completion: {});
-                }
-                else
-                {
-                    let alertController = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: .Alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+            if error != nil {
+                
+                if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
                     
-                    alertController.addAction(defaultAction)
-                    self.presentViewController(alertController, animated: true, completion: nil)
+                    switch errCode {
+                    case .ErrorCodeInvalidEmail:
+                        let alert = UIAlertController(title: "Email not found", message: "Please enter a valid email", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "Error", style: .Default) { _ in })
+                        self.presentViewController(alert, animated: true) {}
+                    default:
+                        let alert = UIAlertController(title: "Create user error", message: "Create user error: \(error)", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "Error", style: .Default) { _ in })
+                        self.presentViewController(alert, animated: true) {}
+                    }
+                    
                     
                 }
+                return
+            }
+            //Successfully authenticated user
+            
+            guard let uid = user?.uid else {
+                return
+            }
+            
+            print(uid)
+            
+            let ref = FIRDatabase.database().referenceFromURL("https://currentlocationtracker-8e2c9.firebaseio.com/")
+            let usersReference = ref.child("users").child(uid)
+            let values = ["email":email, "phone number":phoneNumber]
+            usersReference.updateChildValues(values, withCompletionBlock: {
+                (err, ref) in
+                
+                if err != nil {
+                    print(err)
+                    return
+                }
+                print("Saved user successfully")
+                self.dismissViewControllerAnimated(true, completion: nil)
             })
-        }
-
+        })
     }
+    
+    
     /*
     // MARK: - Navigation
 

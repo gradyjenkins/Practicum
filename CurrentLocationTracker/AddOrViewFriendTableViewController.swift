@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDelegate {
 
+    //current user ID
+    let userID = FIRAuth.auth()?.currentUser?.uid
+    var ref: FIRDatabaseReference!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -44,10 +49,12 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
         // Configure the cell...
         cell.friendInfoLabel.text = "First Name:"
         cell.friendInfoTextField.text = "Bob"
+        cell.friendInfoTextField.tag = indexPath.row
 
         return cell
     }
 
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -86,6 +93,7 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
 
 
     // MARK: - Navigation
+    
 
     //Dismiss current view and display FriendsTableViewController
     @IBAction func backToFriends(sender: UIBarButtonItem) {
@@ -101,6 +109,22 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
     //Save Button Functionality
     @IBAction func saveChangesButton(sender: UIBarButtonItem) {
         //Execute necessary code to update database
+        let indexPath = self.tableView!.indexPathForSelectedRow()!
+        let selectedCell = self.tableView!.cellForRowAtIndexPath(selectedIndexPath!) as! FriendInfoTableViewCell
+        
+        self.friendString = selectedCell.
+        
+        ref = FIRDatabase.database().referenceFromURL("https://currentlocationtracker-8e2c9.firebaseio.com/")
+        
+        guard let friend = friendNameField.text, uid = FIRAuth.auth()?.currentUser?.uid
+            else {
+                return
+        }
+        let friendName = friend as NSString
+        
+        
+        let values = ["name": friendName]
+        self.ref.child("users").child(uid).child("friends").updateChildValues(values)
         
         
         //Dismiss view - return to FriendsTableViewController

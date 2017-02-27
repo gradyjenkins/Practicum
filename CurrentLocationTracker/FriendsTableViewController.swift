@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FriendsTableViewController: UITableViewController {
     
@@ -42,7 +43,8 @@ class FriendsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("eachFriend", forIndexPath: indexPath) as! FriendsListTableViewCell
 
         // Configure the cell...
-        cell.eachFriendName.text = "Friend1"
+        cell.eachFriendName.text = "Friend #1"
+        
 
         return cell
     }
