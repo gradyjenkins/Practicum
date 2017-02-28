@@ -14,7 +14,7 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
     //current user ID
     let userID = FIRAuth.auth()?.currentUser?.uid
     var ref: FIRDatabaseReference!
-    
+    var friendName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +48,10 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
 
         // Configure the cell...
         cell.friendInfoLabel.text = "First Name:"
-        cell.friendInfoTextField.text = "Bob"
+        cell.friendInfoTextField.text = "Name"
         cell.friendInfoTextField.tag = indexPath.row
+        
+        friendName = cell.friendInfoTextField.text!
 
         return cell
     }
@@ -109,22 +111,42 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
     //Save Button Functionality
     @IBAction func saveChangesButton(sender: UIBarButtonItem) {
         //Execute necessary code to update database
-        let indexPath = self.tableView!.indexPathForSelectedRow()!
-        let selectedCell = self.tableView!.cellForRowAtIndexPath(selectedIndexPath!) as! FriendInfoTableViewCell
-        
-        self.friendString = selectedCell.
-        
         ref = FIRDatabase.database().referenceFromURL("https://currentlocationtracker-8e2c9.firebaseio.com/")
+        let indexpathForEmail = NSIndexPath(forRow: 0, inSection: 0)
+        let emailCell = tableView.cellForRowAtIndexPath(indexpathForEmail)! as! FriendInfoTableViewCell
         
-        guard let friend = friendNameField.text, uid = FIRAuth.auth()?.currentUser?.uid
-            else {
-                return
+        if emailCell.friendInfoTextField.placeholder!.isEmpty {
+            
+            let alert = UIAlertController(title: "Alert", message: "all fields are required to be filled in", preferredStyle: .Alert)
+            let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alert.addAction(action)
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            friendName = emailCell.friendInfoTextField.text!
+            print("Hopefully this works 1: " + friendName!)
         }
-        let friendName = friend as NSString
         
         
-        let values = ["name": friendName]
-        self.ref.child("users").child(uid).child("friends").updateChildValues(values)
+        
+        
+        
+        
+        print("Hopefully this works: " + friendName!)
+        guard let uid = FIRAuth.auth()?.currentUser?.uid, let friend = friendName else {
+            return
+       }
+        
+       let values = ["name": friend]
+
+        self.ref.child("users").child(uid).child("friends").updateChildValues(values, withCompletionBlock: {
+            (err, ref) in
+            
+            if err != nil {
+                print(err)
+                return
+            }
+            print("Saved friend successfully")
+        })
         
         
         //Dismiss view - return to FriendsTableViewController

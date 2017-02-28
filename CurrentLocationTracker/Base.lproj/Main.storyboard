@@ -437,9 +437,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="friendNameField" destination="zIK-h1-V3j" id="6mS-Ob-Gbd"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NfV-77-asO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

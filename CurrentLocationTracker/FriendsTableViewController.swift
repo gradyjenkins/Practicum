@@ -11,6 +11,9 @@ import Firebase
 
 class FriendsTableViewController: UITableViewController {
     
+    var ref: FIRDatabaseReference!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
