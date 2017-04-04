@@ -23,16 +23,16 @@ class SelectDestinationViewController: UIViewController, UIPickerViewDelegate, U
 
         // Do any additional setup after loading the view.
         
-        destinationPicker.hidden = true
+        destinationPicker.isHidden = true
         
         destinationPicker.delegate = self
         destinationPicker.dataSource = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: (#selector(SelectDestinationViewController.updatePicker)), name: UITextFieldTextDidBeginEditingNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: (#selector(SelectDestinationViewController.updatePicker)), name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
     }
     
     func updatePicker() {
-        destinationPicker.hidden = false
+        destinationPicker.isHidden = false
         self.destinationPicker.reloadAllComponents()
     }
 
@@ -42,18 +42,18 @@ class SelectDestinationViewController: UIViewController, UIPickerViewDelegate, U
     }
     
     //returns the number of columns to display
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         //When user selects starting point
-        if startingPointField.isFirstResponder() {
+        if startingPointField.isFirstResponder {
             return start[row]
         }
             //When user selects end destination text field
-        else if endingPointField.isFirstResponder() {
+        else if endingPointField.isFirstResponder {
             return end[row]
         }
         
@@ -62,14 +62,14 @@ class SelectDestinationViewController: UIViewController, UIPickerViewDelegate, U
     }
     
     //returns the number of rows
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         //When user selects starting point
-        if startingPointField.isFirstResponder() {
+        if startingPointField.isFirstResponder {
             return start.count
         }
         //When user selects end destination text field
-        else if endingPointField.isFirstResponder() {
+        else if endingPointField.isFirstResponder {
             return end.count
         }
 
@@ -78,29 +78,29 @@ class SelectDestinationViewController: UIViewController, UIPickerViewDelegate, U
     }
     
     //selected picker row
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         //When user selects starting point
-        if startingPointField.isFirstResponder() {
+        if startingPointField.isFirstResponder {
             let selectedDestination = start[row]
             startingPointField.text = selectedDestination
         }
             //When user selects end destination text field
-        else if endingPointField.isFirstResponder() {
+        else if endingPointField.isFirstResponder {
             let selectedDestination = end[row]
             endingPointField.text = selectedDestination
         }
     }
     
-    @IBAction func execTrackRequest(sender: UIBarButtonItem) {
+    @IBAction func execTrackRequest(_ sender: UIBarButtonItem) {
         //Add Code Here to handled execution of tracking request by user
         
         //Either setup unwind segue to return to initial setup view or pop back to that view
     }
     
     //Handles the cancel button functionality
-    @IBAction func cancelTracking(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelTracking(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 

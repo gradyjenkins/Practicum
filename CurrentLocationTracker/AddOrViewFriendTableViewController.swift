@@ -32,19 +32,19 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("friendInfo", forIndexPath: indexPath) as! FriendInfoTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "friendInfo", for: indexPath) as! FriendInfoTableViewCell
 
         // Configure the cell...
         cell.friendInfoLabel.text = "First Name:"
@@ -98,59 +98,65 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
     
 
     //Dismiss current view and display FriendsTableViewController
-    @IBAction func backToFriends(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func backToFriends(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
 
-    //Save Button Functionality
-    @IBAction func saveChangesButton(sender: UIBarButtonItem) {
+    /**
+     Save friend button functionality that will add a friend to the current user's node
+     
+     @param 
+ 
+     @return Will add friend to the user's friendslist
+    */
+    @IBAction func saveChangesButton(_ sender: UIBarButtonItem) {
         //Execute necessary code to update database
-        ref = FIRDatabase.database().referenceFromURL("https://currentlocationtracker-8e2c9.firebaseio.com/")
-        let indexpathForEmail = NSIndexPath(forRow: 0, inSection: 0)
-        let emailCell = tableView.cellForRowAtIndexPath(indexpathForEmail)! as! FriendInfoTableViewCell
+        ref = FIRDatabase.database().reference(fromURL: "https://currentlocationtracker-8e2c9.firebaseio.com/")
+        let indexpathForEmail = IndexPath(row: 0, section: 0)
+        let emailCell = tableView.cellForRow(at: indexpathForEmail)! as! FriendInfoTableViewCell
         
         if emailCell.friendInfoTextField.placeholder!.isEmpty {
             
-            let alert = UIAlertController(title: "Alert", message: "all fields are required to be filled in", preferredStyle: .Alert)
-            let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let alert = UIAlertController(title: "Alert", message: "all fields are required to be filled in", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(action)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         } else {
             friendName = emailCell.friendInfoTextField.text!
-            print("Hopefully this works 1: " + friendName!)
+//            print(friendName!)
         }
         
-        
-        
-        
-        
-        
-        print("Hopefully this works: " + friendName!)
+ 
+        print(friendName!)
         guard let uid = FIRAuth.auth()?.currentUser?.uid, let friend = friendName else {
             return
        }
         
-       let values = ["name": friend]
-
-        self.ref.child("users").child(uid).child("friends").updateChildValues(values, withCompletionBlock: {
-            (err, ref) in
-            
-            if err != nil {
-                print(err)
-                return
-            }
-            print("Saved friend successfully")
-        })
+        let values = ["name": friend]
         
+        
+        let userRef = ref.child("users").child(uid).child("friends")
+        userRef.childByAutoId().updateChildValues(values)
+        
+//        (values, withCompletionBlock: {
+//            (err, ref) in
+//            
+//            if err != nil {
+//                print(err)
+//                return
+//            }
+//            print("Saved friend successfully")
+//        })
+
         
         //Dismiss view - return to FriendsTableViewController
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
 }

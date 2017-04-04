@@ -24,20 +24,20 @@ class LoginViewController: UIViewController {
     }
     
     
-    @IBAction func goToCreateAccount(sender: UIButton) {
-        self.performSegueWithIdentifier("createAccountSegue", sender: self)
+    @IBAction func goToCreateAccount(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "createAccountSegue", sender: self)
 
     }
     
-    @IBAction func loginButton(sender: AnyObject)
+    @IBAction func loginButton(_ sender: AnyObject)
     {
-        guard let email = usernameTextField.text, password = passwordTextField.text
+        guard let email = usernameTextField.text, let password = passwordTextField.text
             else {
                 print("Form is not valid")
                 return
         }
         
-        FIRAuth.auth()?.signInWithEmail(email, password: password, completion: {
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: {
             (user, error) in
             
             if error != nil {
@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
         })
         
         //Add this to section after validation where login credentials are valid
-        self.performSegueWithIdentifier("loginSegue", sender: self)
+        self.performSegue(withIdentifier: "loginSegue", sender: self)
     }
     
 //    func checkIfUserIsLoggedIn() {

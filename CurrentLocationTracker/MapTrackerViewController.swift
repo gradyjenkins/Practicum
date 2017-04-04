@@ -14,6 +14,7 @@ class MapTrackerViewController: UIViewController, MKMapViewDelegate, CLLocationM
     @IBOutlet weak var currentlyTrackingMap: MKMapView!
     
     var locationManager = CLLocationManager()
+    let mapRadius: CLLocationDistance = 1000
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,34 +22,29 @@ class MapTrackerViewController: UIViewController, MKMapViewDelegate, CLLocationM
         // Do any additional setup after loading the view.
         
         
-        currentlyTrackingMap.mapType = .Standard
+        currentlyTrackingMap.mapType = .standard
         currentlyTrackingMap.delegate = self
+        currentlyTrackingMap.userTrackingMode = .follow
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     // MARK: - Navigation
 
-    @IBAction func showTrackingInfo(sender: UIBarButtonItem) {
-        self.performSegueWithIdentifier("trackingInfoSegue", sender: self)
+    @IBAction func showTrackingInfo(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "trackingInfoSegue", sender: self)
     }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "trackingInfoSegue" {
-            let destination = segue.destinationViewController as! UINavigationController
+            let destination = segue.destination as! UINavigationController
             destination.viewControllers[0] as! TrackingInfoTableViewController
         }
     }
 
-    @IBAction func logoutButton(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func logoutButton(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

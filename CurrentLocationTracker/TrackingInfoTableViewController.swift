@@ -27,23 +27,23 @@ class TrackingInfoTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("trackEachFriend", forIndexPath: indexPath) as! IndividualTrackingInfoTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "trackEachFriend", for: indexPath) as! IndividualTrackingInfoTableViewCell
 
         // Configure the cell...
         cell.temporaryLabel.numberOfLines = 3
@@ -98,14 +98,14 @@ class TrackingInfoTableViewController: UITableViewController {
     }
     */
     
-    @IBAction func updateButton(sender: UIBarButtonItem) {
+    @IBAction func updateButton(_ sender: UIBarButtonItem) {
         //Add code here to query database/server for most up to data location and other info
         
         //Page shoud displayed updated info
     }
     
-    @IBAction func backButton(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func backButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
 

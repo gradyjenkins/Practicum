@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>139607716565-ksirhg3rd9dlgv52acsbt17jccmhq36g.apps.googleusercontent.com</string>
+	<string>139607716565-5qdbbe5rluamjmbtkccfhp98k60dufe9.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.139607716565-ksirhg3rd9dlgv52acsbt17jccmhq36g</string>
+	<string>com.googleusercontent.apps.139607716565-5qdbbe5rluamjmbtkccfhp98k60dufe9</string>
 	<key>API_KEY</key>
 	<string>AIzaSyB7dpSs43Yz1GmFbHNJ8z7Xbxh3o9KCeQQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.RyanORourke.CurrentLocationTracker</string>
+	<string>com.GradyJenkins.CurrentLocationTracker</string>
 	<key>PROJECT_ID</key>
 	<string>currentlocationtracker-8e2c9</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:139607716565:ios:3acf9fb4a5627581</string>
+	<string>1:139607716565:ios:e2ad5d32b84d7dd6</string>
 	<key>DATABASE_URL</key>
 	<string>https://currentlocationtracker-8e2c9.firebaseio.com</string>
 </dict>

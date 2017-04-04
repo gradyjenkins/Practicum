@@ -32,27 +32,27 @@ class CreateAccountViewController: UIViewController {
      * -Existing account, invalid email, etc.
      *
      */
-    @IBAction func CreateAccount(sender: AnyObject)
+    @IBAction func CreateAccount(_ sender: AnyObject)
     {
         guard let email = emailField.text, let phoneNumber = phoneNumField.text, let password = passwordField.text else{
             print("Form is not valid")
             return
         }
-        FIRAuth.auth()?.createUserWithEmail(email, password: password, completion: {(user: FIRUser?, error) in
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: {(user: FIRUser?, error) in
             
             if error != nil {
                 
                 if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
                     
                     switch errCode {
-                    case .ErrorCodeInvalidEmail:
-                        let alert = UIAlertController(title: "Email not found", message: "Please enter a valid email", preferredStyle: .Alert)
-                        alert.addAction(UIAlertAction(title: "Error", style: .Default) { _ in })
-                        self.presentViewController(alert, animated: true) {}
+                    case .errorCodeInvalidEmail:
+                        let alert = UIAlertController(title: "Email not found", message: "Please enter a valid email", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Error", style: .default) { _ in })
+                        self.present(alert, animated: true) {}
                     default:
-                        let alert = UIAlertController(title: "Create user error", message: "Create user error: \(error)", preferredStyle: .Alert)
-                        alert.addAction(UIAlertAction(title: "Error", style: .Default) { _ in })
-                        self.presentViewController(alert, animated: true) {}
+                        let alert = UIAlertController(title: "Create user error", message: "Create user error: \(error)", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Error", style: .default) { _ in })
+                        self.present(alert, animated: true) {}
                     }
                     
                     
@@ -67,7 +67,7 @@ class CreateAccountViewController: UIViewController {
             
             print(uid)
             
-            let ref = FIRDatabase.database().referenceFromURL("https://currentlocationtracker-8e2c9.firebaseio.com/")
+            let ref = FIRDatabase.database().reference(fromURL: "https://currentlocationtracker-8e2c9.firebaseio.com/")
             let usersReference = ref.child("users").child(uid)
             let values = ["email":email, "phone number":phoneNumber]
             usersReference.updateChildValues(values, withCompletionBlock: {
@@ -78,7 +78,7 @@ class CreateAccountViewController: UIViewController {
                     return
                 }
                 print("Saved user successfully")
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             })
         })
     }
