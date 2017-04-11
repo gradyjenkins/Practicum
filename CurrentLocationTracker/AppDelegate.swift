@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert,.badge,.sound], categories: nil))
+        
+        application.registerForRemoteNotifications()
         return true
     }
 
@@ -43,6 +46,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map{ String(format: "%02.2hhx", $0) }.joined()
+        
+        if let phonenumber = Utility.sharedInstance.checkForPhoneNumberFromKeychain() {
+            ServiceManager.sharedInstance.registerDeviceForNotifications(deviceDict: ["deviceToken":token, "tags": ["PhoneNumber":phonenumber]])
+        }else {
+            ServiceManager.sharedInstance.registerDeviceForNotifications(deviceDict: ["deviceToken":token])
+        }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        Utility.sharedInstance.logMessage(message: "Failed to register for notifications with error: \(error.localizedDescription)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        if let aps = userInfo["aps"] as? NSDictionary {
+            if let alert = aps["alert"] as? NSDictionary {
+                if let message = alert["message"] as? NSString {
+                    window?.rootViewController?.presentAlert(alertTitle: "Notification", alertMessage: message as String)
+                }
+            } else if let alert = aps["alert"] as? NSString {
+                window?.rootViewController?.presentAlert(alertTitle: "Notifications", alertMessage: alert as String)
+            }
+        }
+    }
+    
+    
 }
 

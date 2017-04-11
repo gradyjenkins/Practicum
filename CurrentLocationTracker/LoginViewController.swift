@@ -14,7 +14,6 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -44,12 +43,27 @@ class LoginViewController: UIViewController {
                 print("TESTING: \(error)")
                 return
             }
+            
+            if let user = user {
+                print(user.uid)
+                self.performSegue(withIdentifier: "loginSegue", sender: self)
+            } else {
+                print("Error no user")
+            }
         })
         
         //Add this to section after validation where login credentials are valid
-        self.performSegue(withIdentifier: "loginSegue", sender: self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if(FIRAuth.auth()?.currentUser != nil){
+            performSegue(withIdentifier: "loginSegue", sender: self)
+        }
+    }
 //    func checkIfUserIsLoggedIn() {
 //        if FIRAuth.auth()?.currentUser?.uid == nil {
 //            performSelector(#selector(handleLogout), withObject: nil, afterDelay: 0)

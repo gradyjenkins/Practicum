@@ -6,6 +6,7 @@ target 'CurrentLocationTracker' do
   use_frameworks!
 
   # Pods for CurrentLocationTracker
+pod ‘KeychainAccess’
 pod ‘Firebase/Core’
 pod 'Firebase/Database'
 pod 'Firebase/Auth'

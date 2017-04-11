@@ -93,11 +93,12 @@
                         <outlet property="emailField" destination="pkx-cz-61C" id="LLO-ix-7y1"/>
                         <outlet property="passwordField" destination="9KU-lf-HRs" id="upd-rT-kXe"/>
                         <outlet property="phoneNumField" destination="9KU-lf-HRs" id="fLv-Mw-Rnb"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="mainSegue" id="WIF-GS-EI9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BAl-Za-J4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="168.5" y="-1575.5"/>
+            <point key="canvasLocation" x="7" y="-800"/>
         </scene>
         <!--LogIn View Controller-->
         <scene sceneID="8dy-Ef-TWU">
@@ -703,6 +704,7 @@
         <image name="Waypoint Map_000000_25.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="WIF-GS-EI9"/>
         <segue reference="iw5-tm-nLO"/>
     </inferredMetricsTieBreakers>
 </document>

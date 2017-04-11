@@ -60,26 +60,50 @@ class CreateAccountViewController: UIViewController {
                 return
             }
             //Successfully authenticated user
+            if let user = user {
+                print(user.uid)
             
-            guard let uid = user?.uid else {
-                return
+                
+                let ref = FIRDatabase.database().reference(fromURL: "https://currentlocationtracker-8e2c9.firebaseio.com/")
+                let usersReference = ref.child("users").child(user.uid)
+                let values = ["email":email, "phone number":phoneNumber]
+                Utility.sharedInstance.setPhoneNumberinKeychain(phoneNum: phoneNumber)
+                usersReference.updateChildValues(values, withCompletionBlock: {
+                    (err, ref) in
+                    
+                    if err != nil {
+                        print(err)
+                        return
+                    }
+                    print("Saved user successfully")
+                    self.performSegue(withIdentifier: "mainSegue", sender: self)
+                })
+
+            } else {
+                print("Error no user")
+                self.presentAlert(alertTitle: "Error", alertMessage: "Error no user")
             }
             
-            print(uid)
-            
-            let ref = FIRDatabase.database().reference(fromURL: "https://currentlocationtracker-8e2c9.firebaseio.com/")
-            let usersReference = ref.child("users").child(uid)
-            let values = ["email":email, "phone number":phoneNumber]
-            usersReference.updateChildValues(values, withCompletionBlock: {
-                (err, ref) in
-                
-                if err != nil {
-                    print(err)
-                    return
-                }
-                print("Saved user successfully")
-                self.dismiss(animated: true, completion: nil)
-            })
+//            guard let uid = user?.uid else {
+//                return
+//            }
+//            
+//            print(uid)
+//            
+//            let ref = FIRDatabase.database().reference(fromURL: "https://currentlocationtracker-8e2c9.firebaseio.com/")
+//            let usersReference = ref.child("users").child(uid)
+//            let values = ["email":email, "phone number":phoneNumber]
+//            Utility.sharedInstance.setPhoneNumberinKeychain(phoneNum: phoneNumber)
+//            usersReference.updateChildValues(values, withCompletionBlock: {
+//                (err, ref) in
+//                
+//                if err != nil {
+//                    print(err)
+//                    return
+//                }
+//                print("Saved user successfully")
+//                self.dismiss(animated: true, completion: nil)
+//            })
         })
     }
     

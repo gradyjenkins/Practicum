@@ -82,7 +82,6 @@ class FriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow!
         let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
-        print(currentCell.textLabel?.text)
         self.performSegue(withIdentifier: "viewFriendSegue", sender: self)
     }
 
