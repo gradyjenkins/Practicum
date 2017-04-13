@@ -9,16 +9,22 @@
 import UIKit
 import Firebase
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var phoneNumField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        emailField.delegate = self
+        phoneNumField.delegate = self
+        passwordField.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -68,6 +74,13 @@ class CreateAccountViewController: UIViewController {
                 let usersReference = ref.child("users").child(user.uid)
                 let values = ["email":email, "phone number":phoneNumber]
                 Utility.sharedInstance.setPhoneNumberinKeychain(phoneNum: phoneNumber)
+                if let devicetoken = Utility.sharedInstance.checkForDeviceTokenFromKeychain() {
+                    if let phonenumber = Utility.sharedInstance.checkForPhoneNumberFromKeychain() {
+                        ServiceManager.sharedInstance.registerDeviceForNotifications(deviceDict: ["deviceToken":devicetoken, "tags": ["PhoneNumber":phonenumber]])
+                    }else {
+                        ServiceManager.sharedInstance.registerDeviceForNotifications(deviceDict: ["deviceToken":devicetoken])
+                    }
+                }
                 usersReference.updateChildValues(values, withCompletionBlock: {
                     (err, ref) in
                     

@@ -25,9 +25,19 @@ class MapTrackerViewController: UIViewController, MKMapViewDelegate, CLLocationM
         currentlyTrackingMap.mapType = .standard
         currentlyTrackingMap.delegate = self
         currentlyTrackingMap.userTrackingMode = .follow
+        
+        //set initial view to monmouth campus
+        let initialLocation = CLLocation(latitude: 41.9344, longitude: 18.144)
+        centerMapForLocation(location: initialLocation)
     }
 
     // MARK: - Navigation
+    
+    func centerMapForLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, mapRadius * 2.0, mapRadius * 2.0)
+        currentlyTrackingMap.setRegion(coordinateRegion, animated: true)
+        
+    }
 
     @IBAction func showTrackingInfo(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "trackingInfoSegue", sender: self)

@@ -11,9 +11,9 @@
 		2434B18F1E08F2FA0089F736 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2434B18E1E08F2FA0089F736 /* CreateAccountViewController.swift */; };
 		249324081E95461000C0DEFE /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324061E95461000C0DEFE /* ServiceManager.swift */; };
 		249324091E95461000C0DEFE /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249324071E95461000C0DEFE /* Utility.swift */; };
-		249326991E9D4B1900C0DEFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 249326981E9D4B1900C0DEFE /* GoogleService-Info.plist */; };
 		24ACB68E1E8AB4D400AC5412 /* Icons in Resources */ = {isa = PBXBuildFile; fileRef = 24ACB68D1E8AB4D400AC5412 /* Icons */; };
 		24ACB6D61E93367800AC5412 /* SecurityCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ACB6D51E93367800AC5412 /* SecurityCallViewController.swift */; };
+		24AE06D81E9D627D0048483A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24AE06D71E9D627D0048483A /* GoogleService-Info.plist */; };
 		352607F81D4C611E004807B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352607F71D4C611E004807B6 /* AppDelegate.swift */; };
 		352607FF1D4C611E004807B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352607FD1D4C611E004807B6 /* Main.storyboard */; };
 		352608011D4C611E004807B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 352608001D4C611E004807B6 /* Assets.xcassets */; };
@@ -39,9 +39,9 @@
 		249324061E95461000C0DEFE /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		249324071E95461000C0DEFE /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		249326971E9D4A6700C0DEFE /* CurrentLocationTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CurrentLocationTracker.entitlements; sourceTree = "<group>"; };
-		249326981E9D4B1900C0DEFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24ACB68D1E8AB4D400AC5412 /* Icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Icons; sourceTree = "<group>"; };
 		24ACB6D51E93367800AC5412 /* SecurityCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityCallViewController.swift; sourceTree = "<group>"; };
+		24AE06D71E9D627D0048483A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		352607F41D4C611E004807B6 /* CurrentLocationTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrentLocationTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		352607F71D4C611E004807B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		352607FE1D4C611E004807B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 		352607F61D4C611E004807B6 /* CurrentLocationTracker */ = {
 			isa = PBXGroup;
 			children = (
-				249326981E9D4B1900C0DEFE /* GoogleService-Info.plist */,
+				24AE06D71E9D627D0048483A /* GoogleService-Info.plist */,
 				249326971E9D4A6700C0DEFE /* CurrentLocationTracker.entitlements */,
 				24090E531E6E93CE0060ACB1 /* Model */,
 				2434B18D1E08E8CD0089F736 /* Controllers */,
@@ -219,7 +219,7 @@
 				TargetAttributes = {
 					352607F31D4C611E004807B6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 3WWFWJDDV9;
+						DevelopmentTeam = 27Q69VYKLQ;
 						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -254,7 +254,7 @@
 			files = (
 				352608041D4C611E004807B6 /* LaunchScreen.storyboard in Resources */,
 				24ACB68E1E8AB4D400AC5412 /* Icons in Resources */,
-				249326991E9D4B1900C0DEFE /* GoogleService-Info.plist in Resources */,
+				24AE06D81E9D627D0048483A /* GoogleService-Info.plist in Resources */,
 				352608011D4C611E004807B6 /* Assets.xcassets in Resources */,
 				352607FF1D4C611E004807B6 /* Main.storyboard in Resources */,
 			);
@@ -450,14 +450,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CurrentLocationTracker/CurrentLocationTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3WWFWJDDV9;
+				DEVELOPMENT_TEAM = 27Q69VYKLQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CurrentLocationTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.monmouth.se495.LocationTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.monmouth.CurrentLocationTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -470,14 +470,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CurrentLocationTracker/CurrentLocationTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3WWFWJDDV9;
+				DEVELOPMENT_TEAM = 27Q69VYKLQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CurrentLocationTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.monmouth.se495.LocationTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.monmouth.CurrentLocationTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
