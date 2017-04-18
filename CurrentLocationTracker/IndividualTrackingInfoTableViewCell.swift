@@ -10,12 +10,23 @@ import UIKit
 
 class IndividualTrackingInfoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var phoneNumberFIeld: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    @IBOutlet weak var temporaryLabel: UILabel!
+    
+    @IBAction func sendNotification(_ sender: Any) {
+        ServiceManager.sharedInstance.sendNotificationsToTags(payload: ["tag_value": [self.phoneNumberFIeld.text!], "message": "Tracking!", "tag_key": "PhoneNumber"], successBlock: { (message) in
+            
+            Utility.sharedInstance.logMessage(message: message ?? "Successfully sent notification to: \(self.phoneNumberFIeld.text!) with message: \(String(describing: "Tracking"))")
+        
+            }) { (failureMessage) in
+                Utility.sharedInstance.logMessage(message: failureMessage ?? "Error sending notification to: Phone Number with message: \("Tracking")")
+        }
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

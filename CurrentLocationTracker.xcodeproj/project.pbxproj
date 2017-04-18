@@ -16,6 +16,8 @@
 		24AE06D81E9D627D0048483A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24AE06D71E9D627D0048483A /* GoogleService-Info.plist */; };
 		24AE06DA1EA1A3F10048483A /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE06D91EA1A3F10048483A /* Sensor.swift */; };
 		24AE07391EA4340C0048483A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE07381EA4340C0048483A /* User.swift */; };
+		24AE073B1EA5D1760048483A /* BeaconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE073A1EA5D1760048483A /* BeaconViewController.swift */; };
+		24AE073D1EA5D2870048483A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AE073C1EA5D2870048483A /* CoreLocation.framework */; };
 		352607F81D4C611E004807B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352607F71D4C611E004807B6 /* AppDelegate.swift */; };
 		352607FF1D4C611E004807B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352607FD1D4C611E004807B6 /* Main.storyboard */; };
 		352608011D4C611E004807B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 352608001D4C611E004807B6 /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 		24AE06D71E9D627D0048483A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24AE06D91EA1A3F10048483A /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		24AE07381EA4340C0048483A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		24AE073A1EA5D1760048483A /* BeaconViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconViewController.swift; sourceTree = "<group>"; };
+		24AE073C1EA5D2870048483A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		352607F41D4C611E004807B6 /* CurrentLocationTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrentLocationTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		352607F71D4C611E004807B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		352607FE1D4C611E004807B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24AE073D1EA5D2870048483A /* CoreLocation.framework in Frameworks */,
 				CFFB7D262E7E7E5D727C0B09 /* Pods_CurrentLocationTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +149,7 @@
 		35436E121D4E998200C0D452 /* SendTracker */ = {
 			isa = PBXGroup;
 			children = (
+				24AE073A1EA5D1760048483A /* BeaconViewController.swift */,
 				35436E101D4E997800C0D452 /* SendTrackerTableViewController.swift */,
 				35436E131D4E99DE00C0D452 /* SendToFriendTableViewCell.swift */,
 				35436E151D4E9A2800C0D452 /* SelectDestinationViewController.swift */,
@@ -185,6 +191,7 @@
 		C2B8053201B1878431A38AD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24AE073C1EA5D2870048483A /* CoreLocation.framework */,
 				F66F1A1C4544A040721AD676 /* Pods_CurrentLocationTracker.framework */,
 			);
 			name = Frameworks;
@@ -331,6 +338,7 @@
 				352607F81D4C611E004807B6 /* AppDelegate.swift in Sources */,
 				24AE07391EA4340C0048483A /* User.swift in Sources */,
 				35436E1D1D4E9AEB00C0D452 /* FriendsListTableViewCell.swift in Sources */,
+				24AE073B1EA5D1760048483A /* BeaconViewController.swift in Sources */,
 				35436E1F1D4E9B1400C0D452 /* FriendInfoTableViewCell.swift in Sources */,
 				35436E181D4E9A7800C0D452 /* FriendsTableViewController.swift in Sources */,
 				35436E241D4E9BD800C0D452 /* TrackingInfoTableViewController.swift in Sources */,
@@ -468,6 +476,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.monmouth.CurrentLocationTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -488,6 +497,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.monmouth.CurrentLocationTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

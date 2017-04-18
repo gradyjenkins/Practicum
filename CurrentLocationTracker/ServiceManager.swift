@@ -428,7 +428,7 @@ class ServiceManager {
         
         Utility.sharedInstance.logMessage(message: "Send notification payload:", dictionary: payload, sourceName: "Service Manager")
         
-        makeServiceCall(forURL: "\(webserviceURL)/api/v1/sendNotificationToTag", method: "POST", addAuthToken: true, cachePolicy: .reloadIgnoringCacheData, headers: nil, body: payload, success: { (json) in
+        makeServiceCall(forURL: "\(webserviceURL)/api/v1/sendNotificationToTag", method: "POST", addAuthToken: false, cachePolicy: .reloadIgnoringCacheData, headers: nil, body: payload, success: { (json) in
             
             // Check for success
             guard let json = json, let recipients = json["recipients"] as? Int, recipients > 0 else {

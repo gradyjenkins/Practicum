@@ -19,12 +19,6 @@ class FriendsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
    
         fetchUser()
     }
@@ -41,17 +35,10 @@ class FriendsTableViewController: UITableViewController {
                 DispatchQueue.main.async(execute: { 
                     self.tableView.reloadData()
                 })
-                
-                //print(friend.name)
             }
             
             
             }, withCancel: nil)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -74,6 +61,7 @@ class FriendsTableViewController: UITableViewController {
         
         // Configure the cell...
         cell.eachFriendName.text = friend.name
+        //cell.eachFriendNumber.text = friend.number
 
         return cell
     }

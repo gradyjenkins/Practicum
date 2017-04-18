@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -499,17 +500,25 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uss-8Y-onn">
-                                            <rect key="frame" x="14" y="0.0" width="344" height="75"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hbr-eC-kgH">
+                                            <rect key="frame" x="139" y="0.0" width="97" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lw-Lj-sLY">
+                                            <rect key="frame" x="117" y="45" width="140" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Send Notification"/>
+                                            <connections>
+                                                <action selector="sendNotification:" destination="CjK-yZ-dh7" eventType="touchUpInside" id="llq-61-WBk"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="temporaryLabel" destination="uss-8Y-onn" id="Hco-fF-HNk"/>
+                                    <outlet property="phoneNumberFIeld" destination="hbr-eC-kgH" id="xQl-Gu-ZVE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -524,16 +533,57 @@
                                 <action selector="backButton:" destination="hwO-SA-rFf" id="j1O-z7-YU7"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="HEs-mq-8Nl">
-                            <connections>
-                                <action selector="updateButton:" destination="hwO-SA-rFf" id="Ug6-sY-dAC"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Update" id="HEs-mq-8Nl">
+                                <connections>
+                                    <action selector="updateButton:" destination="hwO-SA-rFf" id="Ug6-sY-dAC"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Distance" id="T9R-rp-aGi">
+                                <connections>
+                                    <segue destination="x6t-XI-jyg" kind="show" id="B7O-zM-Hwd"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dC-Bk-WPD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3738" y="1213"/>
+            <point key="canvasLocation" x="3736.8000000000002" y="1212.1439280359821"/>
+        </scene>
+        <!--Beacon View Controller-->
+        <scene sceneID="pcn-sh-85b">
+            <objects>
+                <viewController id="x6t-XI-jyg" customClass="BeaconViewController" customModule="CurrentLocationTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8tt-yH-h7e"/>
+                        <viewControllerLayoutGuide type="bottom" id="2qE-nG-MmN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0zM-KQ-OC9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKA-PI-83g">
+                                <rect key="frame" x="52" y="307" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="NKA-PI-83g" secondAttribute="trailing" constant="19" id="LTV-gC-bGf"/>
+                            <constraint firstItem="NKA-PI-83g" firstAttribute="top" secondItem="8tt-yH-h7e" secondAttribute="bottom" constant="243" id="cGj-cV-xHR"/>
+                            <constraint firstItem="NKA-PI-83g" firstAttribute="leading" secondItem="0zM-KQ-OC9" secondAttribute="leadingMargin" constant="36" id="dTB-RL-Jhv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="beaconLabel" destination="NKA-PI-83g" id="VOI-Ky-rE5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c4R-3P-WAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4503.1999999999998" y="1202.2488755622189"/>
         </scene>
         <!--Tracking Map View-->
         <scene sceneID="bMv-52-Qza">

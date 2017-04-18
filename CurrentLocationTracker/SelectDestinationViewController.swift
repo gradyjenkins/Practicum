@@ -84,11 +84,13 @@ class SelectDestinationViewController: UIViewController, UIPickerViewDelegate, U
         if startingPointField.isFirstResponder {
             let selectedDestination = start[row]
             startingPointField.text = selectedDestination
+            print(selectedDestination)
         }
             //When user selects end destination text field
         else if endingPointField.isFirstResponder {
             let selectedDestination = end[row]
             endingPointField.text = selectedDestination
+            print(selectedDestination)
         }
     }
     

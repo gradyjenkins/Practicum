@@ -135,13 +135,11 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
             friendNumber = emailCell.friendPhoneNumber.text!
         }
         
- 
-        print(friendName!)
         guard let uid = FIRAuth.auth()?.currentUser?.uid, let friendName = friendName, let phoneNumber = friendNumber else {
             return
        }
         
-        let values = ["name": friendName, "phone number": phoneNumber]
+        let values = ["name": friendName, "number": phoneNumber]
         
         
         let userRef = ref.child("users").child(uid).child("friends")

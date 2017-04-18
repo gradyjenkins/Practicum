@@ -46,8 +46,8 @@ class TrackingInfoTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trackEachFriend", for: indexPath) as! IndividualTrackingInfoTableViewCell
 
         // Configure the cell...
-        cell.temporaryLabel.numberOfLines = 3
-        cell.temporaryLabel.text = "Display Info of Friends Currently Being Tracked. Remove this label and reference when actual view is being implemented."
+//        cell.temporaryLabel.numberOfLines = 3
+//        cell.temporaryLabel.text = "Display Info of Friends Currently Being Tracked. Remove this label and reference when actual view is being implemented."
 
         return cell
     }
