@@ -32,8 +32,7 @@ class FriendsTableViewController: UITableViewController {
     func fetchUser() {
         let uid = FIRAuth.auth()?.currentUser?.uid
         FIRDatabase.database().reference().child("users").child(uid!).child("friends").observe(.childAdded, with: { (snapshot) in
-            print(snapshot)
-            
+                    
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let friend = Friend()
                 friend.setValuesForKeys(dictionary)

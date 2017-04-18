@@ -18,6 +18,7 @@ class FriendsListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var eachFriendName: UILabel!
     
+    @IBOutlet weak var eachFriendNumber: UILabel!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

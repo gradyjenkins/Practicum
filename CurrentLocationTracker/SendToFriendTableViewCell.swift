@@ -20,6 +20,10 @@ class SendToFriendTableViewCell: UITableViewCell {
     //Handles the values for each friend switch
     @IBOutlet weak var sendSwitch: UISwitch!
     
+    @IBAction func statusChanged(_ sender: UISwitch) {
+        var switchBool = sendSwitch.isOn
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

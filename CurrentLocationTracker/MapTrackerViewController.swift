@@ -27,7 +27,7 @@ class MapTrackerViewController: UIViewController, MKMapViewDelegate, CLLocationM
         currentlyTrackingMap.userTrackingMode = .follow
         
         //set initial view to monmouth campus
-        let initialLocation = CLLocation(latitude: 41.9344, longitude: 18.144)
+        let initialLocation = CLLocation(latitude: 40.2781087, longitude: -74.0065278)
         centerMapForLocation(location: initialLocation)
     }
 

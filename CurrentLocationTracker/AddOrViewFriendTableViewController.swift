@@ -15,6 +15,7 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
     let userID = FIRAuth.auth()?.currentUser?.uid
     var ref: FIRDatabaseReference!
     var friendName: String?
+    var friendNumber: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,30 +132,20 @@ class AddOrViewFriendTableViewController: UITableViewController, UITextFieldDele
             self.present(alert, animated: true, completion: nil)
         } else {
             friendName = emailCell.friendInfoTextField.text!
-//            print(friendName!)
+            friendNumber = emailCell.friendPhoneNumber.text!
         }
         
  
         print(friendName!)
-        guard let uid = FIRAuth.auth()?.currentUser?.uid, let friend = friendName else {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid, let friendName = friendName, let phoneNumber = friendNumber else {
             return
        }
         
-        let values = ["name": friend]
+        let values = ["name": friendName, "phone number": phoneNumber]
         
         
         let userRef = ref.child("users").child(uid).child("friends")
         userRef.childByAutoId().updateChildValues(values)
-        
-//        (values, withCompletionBlock: {
-//            (err, ref) in
-//            
-//            if err != nil {
-//                print(err)
-//                return
-//            }
-//            print("Saved friend successfully")
-//        })
 
         
         //Dismiss view - return to FriendsTableViewController

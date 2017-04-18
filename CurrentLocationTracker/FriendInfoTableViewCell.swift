@@ -17,6 +17,8 @@ class FriendInfoTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var friendInfoLabel: UILabel!
     
     @IBOutlet weak var friendInfoTextField: UITextField!
+    @IBOutlet weak var friendPhoneNumber: UITextField!
+    
     
     
     override func awakeFromNib() {

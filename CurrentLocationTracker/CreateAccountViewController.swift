@@ -22,6 +22,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         emailField.delegate = self
         phoneNumField.delegate = self
         passwordField.delegate = self
